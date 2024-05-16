@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Layout.css"
+import Output from './Output';
 
 export default function Layout() {
     const handleClick = () => {}
@@ -7,6 +8,7 @@ export default function Layout() {
     <div className='frame'>
         <div className='calculator'>
             <br></br>
+            <Output />
             <div className='keys'>
                 <input type='button' value={"c"} className='button clear' onClick={handleClick} />
                 <input type='button' value={"DEL"} className='button clear' onClick={handleClick} />
