@@ -1,11 +1,11 @@
 import React from 'react'
 import OutputRow from './OutputRow'
 
-export default function Output() {
+export default function Output({input, result}) {
   return (
     <div>
-        <OutputRow value={99} textSize={{ fontSize: '20px'}} />
-        <OutputRow value={100} textSize={{ fontSize: '20px'}} />
+        <OutputRow value={result} textSize={{ fontSize: '20px'}} />
+        <OutputRow value={input} />
     </div>
   )
 }

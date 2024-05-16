@@ -1,16 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Layout.css"
 import Output from './Output';
 
 export default function Layout() {
-    const handleClick = () => {}
+  let [ input, setInput ] = useState('0');
+  let [ result, setResult ] = useState('');
+  const handleClick = (event) => {
+    const value = event.target.value;
+    if(value === '=') {
+      if(input !== '') {
+        let res = ''
+        try {
+          res = eval(input)
+        } catch(err) {
+          setResult('Math error')
+        }
+        if(res === undefined) {
+          setResult('Math error')
+        }
+        else {
+          setResult(input + '=');
+          setInput(res);
+        }
+      }
+    }
+    else if (value === 'C') {
+      setInput('0');
+      setResult('')
+    }
+    else if(value === 'DEL') {
+      let str = input;
+      str = str.substr(0, str.length-1)
+      setInput(str);
+    }
+    else if(input === '0') {
+      setInput(value)
+    }
+    else {
+      setInput((input += value))
+    }
+  }
   return (
     <div className='frame'>
         <div className='calculator'>
             <br></br>
-            <Output />
+            <Output input={input} result={result} />
             <div className='keys'>
-                <input type='button' value={"c"} className='button clear' onClick={handleClick} />
+                <input type='button' value={"C"} className='button clear' onClick={handleClick} />
                 <input type='button' value={"DEL"} className='button clear' onClick={handleClick} />
                 <input type='button' value={"%"} className='button operator' onClick={handleClick} />
                 <input type='button' value={"/"} className='button operator' onClick={handleClick} />
